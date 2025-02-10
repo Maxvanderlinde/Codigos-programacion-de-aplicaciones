@@ -1,0 +1,39 @@
+import java.util.Scanner;
+
+class Main {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Hola! ingresa un candidato entre 1 y 9!");
+        int totalVotos = 0;
+        int[] votos = new int[10]; 
+        
+        System.out.println("Introduce el número del candidato (presiona 0 para terminar):");
+        
+        while (true) {
+            int voto = scanner.nextInt();
+            
+            if (voto == 0) {
+                break;
+            }
+            
+            if (voto > 0 && voto <= 9) {
+                votos[voto - 1]++;
+                totalVotos++; 
+            } else {
+                System.out.println("Número de candidato inválido. Por favor ingresa un número entre 1 y 9.");
+            }
+        }
+        
+        System.out.println("\nResultados:");
+        for (int i = 0; i < 9; i++) {
+            if (votos[i] > 0) {
+                double porcentaje = ((double) votos[i] / totalVotos) * 100;
+                System.out.println("Candidato " + (i + 1) + ": " + votos[i] + " votos (" + String.format("%.2f", porcentaje) + "%)");
+            }
+        }
+        
+        System.out.println("\nTotal de votos: " + totalVotos);
+        
+        scanner.close();
+    }
+}
